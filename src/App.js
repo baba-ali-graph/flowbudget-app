@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useReducer, useContext, createContext} from 'react'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Main from './components/Main'
+import Chart from './components/Chart'
+import './styles/index.sass'
+import {reducer, initialState} from './reducer/index'
+import AppContext from './store/AppContext'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App(){
+    const [store, dispatch] = useReducer(reducer, initialState)
+    return (
+        <AppContext.Provider value={{store, dispatch}}>
+        <BrowserRouter >
+            <Switch>
+                <Route path="/chart" component={Chart}/>
+                <Route path="/app" component={Main}/>
+            </Switch>
+        </BrowserRouter>
+        </AppContext.Provider>
+    )
 }
-
-export default App;
