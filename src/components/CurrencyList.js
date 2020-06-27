@@ -7,7 +7,7 @@ export default function(){
     let {currencyList} = store
     return(
         <span className='budget-currency__list'>
-            {currencyList.map(currency => <span onClick={e => dispatch(UpdateBudget('currency', currency))} key={currency}> {currency} </span>)}
+            {currencyList.map(currency => <span onClick={e => dispatch(UpdateBudget({field:'currency', value: currency}))} key={currency}> {currency} </span>)}
         </span>
     )
 }

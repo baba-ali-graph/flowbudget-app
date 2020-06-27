@@ -1,7 +1,8 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: Helvetica;
+  border: 1px solid red;
+  font-family: OCR A;
 }
 
 .hint {
@@ -41,7 +42,7 @@
 }
 
 .sidebar .budget-currency {
-  display: relative;
+  position: relative;
 }
 
 .sidebar .budget-currency__field {
@@ -50,9 +51,21 @@
 
 .sidebar .budget-currency__list {
   position: absolute;
-  bottom: 0px;
+  bottom: -95px;
   left: 0px;
+  box-shadow: black 1px 1px 8px 1px;
+  color: blueviolet;
   background: white;
+  text-align: center;
+}
+
+.sidebar .budget-currency__list span {
+  display: block;
+  padding: 3px 2px;
+}
+
+.sidebar .budget-currency__list span:hover {
+  background: rgba(35, 74, 124, 0.192);
 }
 
 .sidebar .budget__amount {
@@ -86,4 +99,36 @@
 
 .sidebar .new-budget:hover {
   background: rgba(35, 74, 124, 0.192);
+}
+
+.content-wrapper {
+  padding-top: 200px;
+}
+
+@media screen and (min-width: 700px) {
+  .content-wrapper {
+    padding-top: 0px;
+    padding-left: 200px;
+  }
+}
+
+.itemlist {
+  padding: 20px;
+}
+
+.itemlist__title {
+  font-weight: bold;
+  display: flex;
+  max-width: 100px;
+  justify-content: space-between;
+}
+
+.item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-cell {
+  max-width: 100px;
 }

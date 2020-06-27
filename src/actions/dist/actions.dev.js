@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UpdateBudget = exports.SaveBudget = exports.OpenBudget = exports.CreateBudget = void 0;
+exports.SetItem = exports.UpdateBudget = exports.SaveBudget = exports.OpenBudget = exports.CreateBudget = void 0;
 
 var types = _interopRequireWildcard(require("./types"));
 
@@ -48,3 +48,12 @@ var UpdateBudget = function UpdateBudget(payload) {
 };
 
 exports.UpdateBudget = UpdateBudget;
+
+var SetItem = function SetItem(payload) {
+  return {
+    type: types.SET_ITEM,
+    payload: payload
+  };
+};
+
+exports.SetItem = SetItem;

@@ -16,7 +16,7 @@ export default function(){
                 <span className='budget-currency'>   
                     <span 
                         onClick={e => toggleShowCurrencyList(!showCurrencyList)}
-                        className='budget-currency__field'> {currentBudget.currency} N <Icon icon='arrow-down'/> </span>
+                        className='budget-currency__field'> {currentBudget.currency} <Icon icon='arrow-down'/> </span>
                     {showCurrencyList && <CurrencyList />}
                 </span>
                 <input className='budget__amount' placeholder="Budget Here" onChange={e => dispatch(UpdateBudget({field: 'amount', value: e.target.value})) }  />
@@ -24,13 +24,13 @@ export default function(){
 
             <div className='used content-wrapper'>
                 <div className='used title'> Used: </div>
-                <h2 className='used value'> {currentBudget.used} N400</h2>
+    <h2 className='used value'> {currentBudget.currency}{currentBudget.used} </h2>
             </div>
 
 
             <div className='remaining content-wrapper'>
                 <div className='remaining title'> Remaining: </div>
-                <h2 className={`remaining value ${level}`}> {currentBudget.remaining} N300</h2>
+    <h2 className={`remaining value ${level}`}> {currentBudget.currency}{currentBudget.remaining} </h2>
             </div>
 
             <div className='button new-budget mdi mdi-plus'> 

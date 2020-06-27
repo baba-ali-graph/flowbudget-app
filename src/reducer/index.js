@@ -1,11 +1,23 @@
 import * as types from '../actions/types'
+import uuid from 'uuid'
 export const initialState = {
-    currentBudget: {amount:30},
-    currencyList: [],
+    currentBudget: {
+        amount:3000,
+        used: 1300,
+        remaining: 1700,
+        currency: 'N',
+        items: [
+            {_id:uuid.v4(), name: 'rice', price: 600},
+            {_id:uuid.v4(), name: 'beans', price: 400},
+            {_id:uuid.v4(), name: 'tomatoes', price: 300}
+        ]
+        },
+    currencyList: ['N', 'USD', 'F', 'E'],
     showHint: true
 }
 
 export const reducer = (state = {}, action) => {
+    let {currentBudget} = state
     switch(action.type){
         // budget actions
         case types.CREATE_BUDGET:
@@ -20,16 +32,22 @@ export const reducer = (state = {}, action) => {
             return {...state}
         case types.UPDATE_BUDGET:
             let {field, value} = action.payload
-            let {currentBudget} = state
             currentBudget = {...currentBudget, [field]: value}
             console.log(currentBudget)
             return {...state, currentBudget}
-        
         // item actions
         case types.ADD_ITEM:
-            return {...state}
+            let newItem = {_id:uuid.v4(), name:'', price: 0}
+            currentBudget.items.push(newItem)
+            return {...state, ...currentBudget}
         case types.SET_ITEM:
-            return {...state}
+            currentBudget.items = currentBudget.items.map(item => {
+                if(item._id === action.payload._id){
+                    item[action.payload.field] =  action.payload.value
+                }
+                return item
+            })
+            return {...state, ...currentBudget}
         case types.DELETE_ITEM:
             return {...state}
         case types.UPDATE_ITEM:

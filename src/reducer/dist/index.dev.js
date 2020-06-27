@@ -9,6 +9,10 @@ exports.reducer = exports.initialState = void 0;
 
 var types = _interopRequireWildcard(require("../actions/types"));
 
+var _uuid = _interopRequireDefault(require("uuid"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -21,9 +25,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialState = {
   currentBudget: {
-    amount: 30
+    amount: 3000,
+    used: 1300,
+    remaining: 1700,
+    currency: 'N',
+    items: [{
+      _id: _uuid["default"].v4(),
+      name: 'rice',
+      price: 600
+    }, {
+      _id: _uuid["default"].v4(),
+      name: 'beans',
+      price: 400
+    }, {
+      _id: _uuid["default"].v4(),
+      name: 'tomatoes',
+      price: 300
+    }]
   },
-  currencyList: [],
+  currencyList: ['N', 'USD', 'F', 'E'],
   showHint: true
 };
 exports.initialState = initialState;
@@ -31,6 +51,7 @@ exports.initialState = initialState;
 var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var currentBudget = state.currentBudget;
 
   switch (action.type) {
     // budget actions
@@ -52,7 +73,6 @@ var reducer = function reducer() {
       var _action$payload = action.payload,
           field = _action$payload.field,
           value = _action$payload.value;
-      var currentBudget = state.currentBudget;
       currentBudget = _objectSpread({}, currentBudget, _defineProperty({}, field, value));
       console.log(currentBudget);
       return _objectSpread({}, state, {
@@ -61,10 +81,23 @@ var reducer = function reducer() {
     // item actions
 
     case types.ADD_ITEM:
-      return _objectSpread({}, state);
+      var newItem = {
+        _id: _uuid["default"].v4(),
+        name: '',
+        price: 0
+      };
+      currentBudget.items.push(newItem);
+      return _objectSpread({}, state, {}, currentBudget);
 
     case types.SET_ITEM:
-      return _objectSpread({}, state);
+      currentBudget.items = currentBudget.items.map(function (item) {
+        if (item._id === action.payload._id) {
+          item[action.payload.field] = action.payload.value;
+        }
+
+        return item;
+      });
+      return _objectSpread({}, state, {}, currentBudget);
 
     case types.DELETE_ITEM:
       return _objectSpread({}, state);

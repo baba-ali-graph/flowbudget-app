@@ -1,0 +1,1 @@
+"use strict";function isMobile(){return window.innerWidth<567}Object.defineProperty(exports,"__esModule",{value:!0}),exports.isMobile=isMobile;

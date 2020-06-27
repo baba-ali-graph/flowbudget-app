@@ -3,8 +3,8 @@ $hover-color:  rgba(35, 74, 124, 0.192);
 *
     margin: 0px
     padding: 0px
-    border:  
-    font-family: Helvetica
+    border: 1px solid red
+    font-family: OCR A
 
 .hint
     position: absolute
@@ -33,14 +33,22 @@ $hover-color:  rgba(35, 74, 124, 0.192);
         text-align: right
         padding: 8px 8px
         &-currency
-            display: relative
+            position: relative 
             &__field
                 padding: 10px
             &__list
                 position: absolute
-                bottom: 0px
+                bottom: -95px
                 left: 0px
+                box-shadow: black 1px 1px 8px 1px
+                color: blueviolet
                 background: white
+                text-align: center
+                span
+                    display: block
+                    padding: 3px 2px
+                    &:hover
+                        background: $hover-color
         &__amount
             padding: 5px
             width: 100px
@@ -62,3 +70,29 @@ $hover-color:  rgba(35, 74, 124, 0.192);
         padding: 5px 8px
         &:hover
             background: $hover-color
+
+.content-wrapper
+    padding-top: 200px
+    @media screen and (min-width:700px)
+        padding:
+            top: 0px
+            left: 200px
+
+
+.itemlist
+    padding: 20px
+    &__title
+        font-weight: bold
+        display: flex
+        max-width: 100px
+        justify-content: space-between
+
+.item
+    &-wrapper
+        display: flex
+        align-items: center
+        justify-content: space-between
+    &-cell
+        max-width: 100px
+
+    
