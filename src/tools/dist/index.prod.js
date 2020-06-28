@@ -1,1 +1,1 @@
-"use strict";function isMobile(){return window.innerWidth<567}Object.defineProperty(exports,"__esModule",{value:!0}),exports.isMobile=isMobile;
+"use strict";function isMobile(){return window.innerWidth<567}function formatPrice(e,r){return"".concat(e," ").concat(r)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.isMobile=isMobile,exports.formatPrice=formatPrice;

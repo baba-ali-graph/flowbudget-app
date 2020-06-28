@@ -10,8 +10,8 @@ export default function(){
         <div className='itemlist'>
             <div className='itemlist__title'>
                 <span> Name </span>
-                <span> Price</span>
-                {!isMobile && <span> Percent </span>}
+                <span> Price ({currentBudget.currency})</span>
+                {!isMobile() && <span> Percent </span>}
             </div>
             {currentBudget.items.map(item => (
                 <Item 

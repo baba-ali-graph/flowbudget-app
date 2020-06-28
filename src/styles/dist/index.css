@@ -1,7 +1,6 @@
 * {
   margin: 0px;
   padding: 0px;
-  border: 1px solid red;
   font-family: OCR A;
 }
 
@@ -16,7 +15,7 @@
 }
 
 .sidebar {
-  background: blueviolet;
+  background: brown;
   color: white;
   position: fixed;
   width: 100%;
@@ -53,10 +52,11 @@
   position: absolute;
   bottom: -95px;
   left: 0px;
-  box-shadow: black 1px 1px 8px 1px;
-  color: blueviolet;
+  box-shadow: black 0px 0px 8px 0px;
+  color: brown;
   background: white;
   text-align: center;
+  font-size: 14px;
 }
 
 .sidebar .budget-currency__list span {
@@ -113,14 +113,42 @@
 }
 
 .itemlist {
+  margin: 10px auto;
+  max-height: 350px;
   padding: 20px;
+}
+
+.itemlist::-webkit-scrollbar-thumb {
+  width: 5px;
+  background: black;
+}
+
+@media screen and (min-width: 700px) {
+  .itemlist {
+    max-width: 450px;
+  }
 }
 
 .itemlist__title {
   font-weight: bold;
   display: flex;
-  max-width: 100px;
+  text-align: center;
   justify-content: space-between;
+}
+
+.itemlist__title span {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+}
+
+.item {
+  margin: 20px auto;
+}
+
+.item:first-child {
+  margin-top: 10px;
 }
 
 .item-wrapper {
@@ -130,5 +158,78 @@
 }
 
 .item-cell {
-  max-width: 100px;
+  width: 100px;
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid lightgray;
+  background: rgba(120, 152, 182, 0.068);
+}
+
+.item-cell:first-child {
+  text-align: left;
+}
+
+.item-cell:last-child {
+  text-align: right;
+}
+
+.item .size-indicator-wrapper {
+  margin: 5px 0px;
+  width: 100%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 700px) {
+  .item .size-indicator-wrapper {
+    font-size: 14px;
+    position: relative;
+  }
+}
+
+.item .size-indicator-wrapper .size-indicator {
+  height: 2px;
+  background: rgba(120, 152, 182, 0.2);
+  margin: 0px 5px;
+  position: relative;
+  font-size: 80%;
+  display: inline-block;
+  position: relative;
+  border-radius: 10px;
+  transition: width .5s ease-in-out;
+}
+
+.f-button {
+  position: fixed;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.f-button-small {
+  width: 40px;
+  height: 40px;
+}
+
+.f-button-big {
+  width: 40px;
+  height: 40px;
+}
+
+.titlebar {
+  padding: 5px 10px;
+}
+
+.titlebar h1 {
+  color: brown;
+  border-radius: 10px;
+  background: rgba(120, 152, 182, 0.068);
+  max-width: 150px;
 }
