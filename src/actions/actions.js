@@ -5,3 +5,4 @@ export const SaveBudget = (payload) => ({type: types.SAVE_BUDGET, payload})
 export const UpdateBudget = (payload) => ({type: types.UPDATE_BUDGET, payload})
 
 export const SetItem = (payload) => ({type: types.SET_ITEM, payload})
+export const DeleteItem = (payload) => ({type:types.DELETE_ITEM, payload})

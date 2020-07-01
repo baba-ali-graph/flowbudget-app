@@ -1,3 +1,10 @@
+.titlebar .row, .titlebar__actions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -15,7 +22,7 @@
 }
 
 .sidebar {
-  background: brown;
+  background: blueviolet;
   color: white;
   position: fixed;
   width: 100%;
@@ -53,7 +60,7 @@
   bottom: -95px;
   left: 0px;
   box-shadow: black 0px 0px 8px 0px;
-  color: brown;
+  color: blueviolet;
   background: white;
   text-align: center;
   font-size: 14px;
@@ -145,6 +152,7 @@
 
 .item {
   margin: 20px auto;
+  position: relative;
 }
 
 .item:first-child {
@@ -157,6 +165,22 @@
   justify-content: space-between;
 }
 
+.item-delete {
+  position: absolute;
+  left: 110%;
+  border-radius: 100%;
+  top: 8px;
+  width: 22px;
+  height: 22px;
+  transition: .4s ease-in-out;
+  background: rgba(200, 85, 85, 0.8);
+  opacity: 0;
+}
+
+.item:hover .item-delete {
+  opacity: 1;
+}
+
 .item-cell {
   width: 100px;
   padding: 10px;
@@ -164,7 +188,23 @@
   text-align: center;
   border-radius: 15px;
   border: 1px solid lightgray;
+  transition: .4s ease-in-out;
   background: rgba(120, 152, 182, 0.068);
+}
+
+.item-cell:focus {
+  border: 1px solid lightgray;
+  outline: 0px;
+}
+
+.item-cell.warn {
+  color: yellow;
+  border: .8px solid yellow;
+}
+
+.item-cell.error {
+  color: red;
+  border: .9px solid red;
 }
 
 .item-cell:first-child {
@@ -227,9 +267,52 @@
   padding: 5px 10px;
 }
 
-.titlebar h1 {
-  color: brown;
-  border-radius: 10px;
+.titlebar .row {
+  justify-content: space-between;
+}
+
+.titlebar__title {
   background: rgba(120, 152, 182, 0.068);
-  max-width: 150px;
+  position: relative;
+}
+
+.titlebar__title h1 {
+  color: blueviolet;
+}
+
+.titlebar__title h1 .expand-button {
+  cursor: pointer;
+}
+
+.titlebar__title .file-list {
+  position: absolute;
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  background: rgba(120, 152, 182, 0.2);
+}
+
+.titlebar__title .file-list .file__item {
+  padding: 8px 2px;
+}
+
+.titlebar__title .file-list .file__timestamp {
+  font-size: 50%;
+  margin: 3px 0px;
+  text-align: right;
+}
+
+.titlebar__actions {
+  max-width: 100px;
+  margin-right: 10px;
+  justify-content: space-between;
+}
+
+.titlebar__actions span {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.titlebar__actions span:hover {
+  background: rgba(120, 152, 182, 0.068);
 }

@@ -1,12 +1,19 @@
 $hover-color:  rgba(35, 74, 124, 0.192)
 $light-bg: rgba(120, 152, 182, 0.068)
 $darker-bg: rgba(120, 152, 182, 0.2)
-$primary-color: brown
+$delete-color: rgba(200, 85, 85, .8)
+$primary-color: blueviolet
+
+
+%flexed
+    display: flex
+    flex-flow: row wrap
+    justify-content: center
+    align-items: center
 
 *
     margin: 0px
     padding: 0px
-    border: 
     font-family: OCR A
 
 .hint
@@ -106,12 +113,25 @@ $primary-color: brown
 
 .item
     margin: 20px auto
+    position: relative
     &:first-child
             margin-top: 10px
     &-wrapper
         display: flex
         align-items: center
         justify-content: space-between        
+    &-delete
+        position: absolute
+        left: 110%
+        border-radius: 100%
+        top: 8px
+        width: 22px
+        height: 22px
+        transition: .4s ease-in-out
+        background: $delete-color
+        opacity: 0
+    &:hover &-delete
+        opacity: 1
     &-cell
         width: 100px
         padding: 10px
@@ -119,7 +139,17 @@ $primary-color: brown
         text-align: center
         border-radius: 15px
         border: 1px solid lightgray
+        transition: .4s ease-in-out
         background: $light-bg
+        &:focus
+            border: 1px solid lightgray
+            outline: 0px
+        &.warn
+            color: yellow
+            border: .8px solid yellow
+        &.error
+            color: red
+            border: .9px solid red
         &:first-child
             text-align: left
         &:last-child
@@ -165,8 +195,39 @@ $primary-color: brown
 
 .titlebar
     padding: 5px 10px
-    h1
-        color: $primary-color
-        border-radius: 10px
+    .row
+        @extend %flexed
+        justify-content: space-between
+
+    &__title
         background: $light-bg
-        max-width: 150px 
+        position: relative
+        h1
+            color: $primary-color
+            .expand-button
+                cursor: pointer
+        .file-list
+            position: absolute
+            width: 100%
+            padding: 5px
+            margin-top: 5px
+            background: $darker-bg
+            .file__item
+                padding: 8px 2px
+            .file__timestamp
+                font-size: 50%
+                margin: 3px 0px
+                text-align: right
+
+
+    &__actions
+        @extend %flexed
+        max-width: 100px
+        margin-right: 10px
+        justify-content: space-between
+        span
+            padding: 10px
+            cursor: pointer
+            &:hover
+                background: $light-bg
+

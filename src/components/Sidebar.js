@@ -4,6 +4,8 @@ import Hint from './Hint'
 import CurrencyList from './CurrencyList'
 import AppContext from '../store/AppContext'
 import {UpdateBudget} from '../actions/actions'
+import {motion} from 'framer-motion'
+import{slideRight} from '../animations/index'
 
 export default function(){
     let {store, dispatch} = useContext(AppContext)
@@ -11,7 +13,7 @@ export default function(){
     let {currentBudget} = store 
     let level = currentBudget.remaining < 0.1 * currentBudget.amount ? 'low' : ''
     return(
-        <aside className='sidebar'>
+        <motion.div initial={slideRight.initial} animate={slideRight.animation}  className='sidebar'>
             <div className='budget'>
                 <span className='budget-currency'>   
                     <span 
@@ -19,7 +21,7 @@ export default function(){
                         className='budget-currency__field'> {currentBudget.currency} <Icon icon='arrow-down'/> </span>
                     {showCurrencyList && <CurrencyList />}
                 </span>
-                <input className='budget__amount' placeholder="Budget Here" onChange={e => dispatch(UpdateBudget({field: 'amount', value: e.target.value})) }  />
+                <input className='budget__amount' placeholder="Budget Amount" value={currentBudget.amount} onChange={e => dispatch(UpdateBudget({field: 'amount', value: e.target.value})) }  />
             </div>
 
             <div className='used content-wrapper'>
@@ -34,8 +36,8 @@ export default function(){
             </div>
 
             <div className='button new-budget mdi mdi-plus'> 
-                <span> + </span> <Hint message="New Budget" /> 
+                <span> + </span> <Hint message="Creates a  new budget" /> 
                 </div>
-        </aside>
+        </motion.div>
     )
 }
