@@ -1,4 +1,4 @@
-.titlebar .row, .titlebar__actions {
+.docbar__wrapper {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -8,7 +8,9 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: OCR A;
+  box-sizing: border-box;
+  border: 1px solid red;
+  font-family: Trebuchet MS;
 }
 
 .hint {
@@ -24,6 +26,7 @@
 .sidebar {
   background: blueviolet;
   color: white;
+  z-index: 20;
   position: fixed;
   width: 100%;
   height: 200px;
@@ -108,12 +111,25 @@
   background: rgba(35, 74, 124, 0.192);
 }
 
-.content-wrapper {
+.notification {
+  position: fixed;
+  box-shadow: lightgray 1px 1px 40px 1px;
+  padding: 8px;
+  background: #291223;
+  color: white;
+}
+
+.notification--error {
+  color: red;
+}
+
+.main-wrapper {
   padding-top: 200px;
+  position: relative;
 }
 
 @media screen and (min-width: 700px) {
-  .content-wrapper {
+  .main-wrapper {
     padding-top: 0px;
     padding-left: 200px;
   }
@@ -166,7 +182,7 @@
 }
 
 .item-delete {
-  position: absolute;
+  display: none;
   left: 110%;
   border-radius: 100%;
   top: 8px;
@@ -186,7 +202,7 @@
   padding: 10px;
   display: inline-block;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 0px;
   border: 1px solid lightgray;
   transition: .4s ease-in-out;
   background: rgba(120, 152, 182, 0.068);
@@ -247,72 +263,142 @@
   position: fixed;
   border-radius: 100%;
   display: flex;
+  background: blueviolet;
+  color: white;
+  font-size: 26.66667px;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
 
 .f-button-small {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }
 
 .f-button-big {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
 }
 
-.titlebar {
-  padding: 5px 10px;
+.f-button.button-add {
+  bottom: 5px;
+  right: 13px;
 }
 
-.titlebar .row {
+.f-button.button-help {
+  left: 10px;
+  bottom: 60px;
+}
+
+.docbar {
+  bottom: 0px;
+  background: rgba(120, 152, 182, 0.2);
+  width: 100%;
+  margin: 0px;
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .docbar {
+    display: block;
+  }
+}
+
+.docbar__wrapper {
+  padding: 5px;
   justify-content: space-between;
 }
 
-.titlebar__title {
-  background: rgba(120, 152, 182, 0.068);
+.budg {
+  display: block;
+}
+
+.budg__title {
+  padding: 5px 10px;
   position: relative;
 }
 
-.titlebar__title h1 {
+.budg__expand-btn {
   color: blueviolet;
 }
 
-.titlebar__title h1 .expand-button {
-  cursor: pointer;
-}
-
-.titlebar__title .file-list {
+.budg__list {
+  list-style-type: none;
   position: absolute;
   width: 100%;
-  padding: 5px;
-  margin-top: 5px;
-  background: rgba(120, 152, 182, 0.2);
 }
 
-.titlebar__title .file-list .file__item {
-  padding: 8px 2px;
+.budg__doc {
+  padding: 5px 3px;
+  position: relative;
 }
 
-.titlebar__title .file-list .file__timestamp {
-  font-size: 50%;
-  margin: 3px 0px;
+.budg__docname {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.budg__doctimestamp {
+  font: .8em;
   text-align: right;
 }
 
-.titlebar__actions {
-  max-width: 100px;
-  margin-right: 10px;
+.budg__doc-contextmenu {
+  position: absolute;
+}
+
+.budg__doc-contextmenu-item {
+  font-weight: bold;
+}
+
+.budg__action {
+  padding: 2px 5px;
+}
+
+.budg {
+  display: block;
+  position: fixed;
+  left: 5px;
+  top: 5px;
+}
+
+@media (min-width: 700px) {
+  .budg {
+    display: none;
+  }
+}
+
+.action-bar {
+  position: fixed;
+  bottom: 5px;
+  display: none;
   justify-content: space-between;
-}
-
-.titlebar__actions span {
   padding: 10px;
-  cursor: pointer;
+  width: 100px;
+  max-width: 200px;
 }
 
-.titlebar__actions span:hover {
-  background: rgba(120, 152, 182, 0.068);
+@media (min-width: 700px) {
+  .action-bar {
+    display: flex;
+  }
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0px;
+  z-index: 30;
+}
+
+@media (min-width: 700px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+.mobile-nav__nav-trigger {
+  background: none;
 }

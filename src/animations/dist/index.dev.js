@@ -3,16 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.slideRight = exports.slideDown = void 0;
-var slideDown = {
-  initial: {
-    y: -10
+exports.slideRightLeft = exports.slideRight = exports.slideDownUp = void 0;
+var slideDownUp = {
+  start: {
+    y: -100
   },
-  animation: {
+  down: {
     y: 0
+  },
+  up: {
+    y: -100
   }
 };
-exports.slideDown = slideDown;
+exports.slideDownUp = slideDownUp;
 var slideRight = {
   initial: {
     x: -100
@@ -22,3 +25,15 @@ var slideRight = {
   }
 };
 exports.slideRight = slideRight;
+var slideRightLeft = {
+  start: {
+    x: -100
+  },
+  right: {
+    x: 0
+  },
+  left: {
+    x: -100
+  }
+};
+exports.slideRightLeft = slideRightLeft;

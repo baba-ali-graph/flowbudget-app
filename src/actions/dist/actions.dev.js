@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DeleteItem = exports.SetItem = exports.UpdateBudget = exports.SaveBudget = exports.OpenBudget = exports.CreateBudget = void 0;
+exports.HideNotification = exports.ToggleHelp = exports.AddItem = exports.DeleteItem = exports.SetItem = exports.SortBudget = exports.DeleteBudget = exports.UpdateBudget = exports.SaveBudget = exports.OpenBudget = exports.CreateBudget = void 0;
 
 var types = _interopRequireWildcard(require("./types"));
 
@@ -49,6 +49,22 @@ var UpdateBudget = function UpdateBudget(payload) {
 
 exports.UpdateBudget = UpdateBudget;
 
+var DeleteBudget = function DeleteBudget() {
+  return {
+    type: types.DELETE_BUDGET
+  };
+};
+
+exports.DeleteBudget = DeleteBudget;
+
+var SortBudget = function SortBudget() {
+  return {
+    type: types.SORT_BUDGET
+  };
+};
+
+exports.SortBudget = SortBudget;
+
 var SetItem = function SetItem(payload) {
   return {
     type: types.SET_ITEM,
@@ -66,3 +82,27 @@ var DeleteItem = function DeleteItem(payload) {
 };
 
 exports.DeleteItem = DeleteItem;
+
+var AddItem = function AddItem() {
+  return {
+    type: types.ADD_ITEM
+  };
+};
+
+exports.AddItem = AddItem;
+
+var ToggleHelp = function ToggleHelp() {
+  return {
+    types: types.TOGGLE_HELP
+  };
+};
+
+exports.ToggleHelp = ToggleHelp;
+
+var HideNotification = function HideNotification() {
+  return {
+    type: types.HIDE_NOTIFICATION
+  };
+};
+
+exports.HideNotification = HideNotification;

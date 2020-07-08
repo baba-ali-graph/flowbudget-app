@@ -3,7 +3,7 @@ $light-bg: rgba(120, 152, 182, 0.068)
 $darker-bg: rgba(120, 152, 182, 0.2)
 $delete-color: rgba(200, 85, 85, .8)
 $primary-color: blueviolet
-
+$fg-1: rgb(41, 18, 35)
 
 %flexed
     display: flex
@@ -11,10 +11,13 @@ $primary-color: blueviolet
     justify-content: center
     align-items: center
 
+
 *
     margin: 0px
     padding: 0px
-    font-family: OCR A
+    box-sizing: border-box
+    border: 
+    font-family: Trebuchet MS
 
 .hint
     position: absolute
@@ -28,6 +31,7 @@ $primary-color: blueviolet
 .sidebar
     background: $primary-color
     color: white
+    z-index: 20
     position: fixed
     width: 100%
     height: 200px
@@ -82,8 +86,23 @@ $primary-color: blueviolet
         &:hover
             background: $hover-color
 
-.content-wrapper
+.notification
+    position: fixed
+    box-shadow: lightgray 1px 1px 40px 1px
+    padding: 8px
+    background: $fg-1
+    color: white 
+    &--error
+        color: red
+    &__icon
+    &__msg
+    &__delete-btn
+
+
+.main-wrapper
     padding-top: 200px
+    position: relative
+    
     
     @media screen and (min-width:700px)
         padding:
@@ -121,7 +140,7 @@ $primary-color: blueviolet
         align-items: center
         justify-content: space-between        
     &-delete
-        position: absolute
+        display: none
         left: 110%
         border-radius: 100%
         top: 8px
@@ -137,7 +156,7 @@ $primary-color: blueviolet
         padding: 10px
         display: inline-block
         text-align: center
-        border-radius: 15px
+        border-radius: 0px
         border: 1px solid lightgray
         transition: .4s ease-in-out
         background: $light-bg
@@ -181,53 +200,170 @@ $primary-color: blueviolet
     position: fixed
     border-radius: 100%
     display: flex
+    background: $primary-color
+    color: white
+    font-size: $size/1.5
     justify-content: center
     align-items: center
     width: $size
     height: $size
+    cursor: pointer
     &-small
-        width: $size
-        height: $size
+        width: $size / 2
+        height: $size / 2
     &-big
-        width: $size
-        height: $size
+        width: $size * 2
+        height: $size * 2
+    &.button-add
+        bottom: 5px
+        right: 13px
+    &.button-help
+        left: 10px
+        bottom: $size * 1.5
 
 
-.titlebar
-    padding: 5px 10px
-    .row
+.docbar
+    bottom: 0px
+    background: $darker-bg
+    width: 100%
+    margin: 0px
+    display: none
+    @media (min-width:700px)
+        display: block
+
+    &__wrapper
         @extend %flexed
+        padding: 5px
         justify-content: space-between
-
+    
+    
+    
+.budg
+    display: block
     &__title
-        background: $light-bg
+        padding: 5px 10px
         position: relative
-        h1
-            color: $primary-color
-            .expand-button
-                cursor: pointer
-        .file-list
-            position: absolute
-            width: 100%
-            padding: 5px
-            margin-top: 5px
-            background: $darker-bg
-            .file__item
-                padding: 8px 2px
-            .file__timestamp
-                font-size: 50%
-                margin: 3px 0px
-                text-align: right
+    &__expand-btn
+        color: $primary-color
+    &__list
+        list-style-type: none
+        position: absolute
+        width: 100%
+        
+    &__doc
+        padding: 5px 3px
+        position: relative
+    &__docname
+        font:
+            weight: bold
+            size: 1.3em
+    &__doctimestamp
+        font: .8em
+        text-align: right
+    &__doc-contextmenu
+        position: absolute
+    &__doc-contextmenu-item
+        font-weight: bold
+    
+    &__actions-wrapper
+    
+    &__action
+        padding: 2px 5px
+        
+.budg
+    display: block
+    position: fixed
+    left: 5px
+    top: 5px
+    @media (min-width:700px)
+        display: none
+    &__title
+        
+    &__list
+
+.action-bar
+    position: fixed
+    bottom: 5px
+    display: none
+    justify-content: space-between
+    padding: 10px
+    width: 100px
+    max-width: 200px
+    @media (min-width:700px)
+        display: flex
 
 
-    &__actions
+
+.budget
+    list-style-type: none
+    color: white
+    padding: 10px 25px
+    background: rgba(87, 0, 108, 0.965)
+    &__title-wrapper
         @extend %flexed
-        max-width: 100px
-        margin-right: 10px
+        flex-flow: row nowrap
         justify-content: space-between
-        span
-            padding: 10px
-            cursor: pointer
-            &:hover
-                background: $light-bg
+        h3
+            max-width: 70%
+            font:
+                weight: normal
+                size: 16px
+    &__timestamp
+        text-align: right
+        font-size: 60%
+
+.mobile-nav
+    $fg-1: rgb(102, 0, 128)
+    $fg-2: "#790098ff"
+    $fg-faint: "#8200a358"
+    
+    
+    background: transparent
+    position: fixed
+    top: 0px
+    background:  
+    width: 180px
+    
+    z-index: 30
+    @media (min-width: 700px)
+        display: none
+    &__nav-trigger
+
+.navbar
+    background: rgb(102, 0, 128)
+    height: 100%
+    position: fixed
+    top: 0px
+    width: 220px
+    &__top-wrapper
+        
+    .budget-wrapper
+        @extend %flexed
+        color: white
+        padding: 5px 20px
+        background: rgba(107, 27, 90, 0.286)
+        justify-content: space-between
+        h3
+            padding: 10px 30px
+            border-radius: 20px
+            max-width: 150px
+            background-color: rgba(130, 0, 163, 0.345)
+        .expand-btn
+            text-align: center
+            display: inline-block
+            width: 20px
+            height: 20px
+            border-radius: 100%
+    &__action-wrapper
+        padding-top: 30px
+    &__action
+        padding: 20px 20px
+        color: white
+        width: 100%
+        transition: .4s ease-in-out
+        &:hover
+            background: rgba(130, 0, 163, 0.345)
+        .icon
+        .title
+            
 

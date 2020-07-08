@@ -1,18 +1,24 @@
 import React from 'react'
-import TitleBar from './TitleBar'
+import DocBar from './DocBar'
 import Sidebar from './Sidebar'
+import ActionBar from './ActionBar'
 import ItemList from './ItemList'
-// import AddButton from './Buttons/AddButton.'
+import AddButton from './Buttons/AddButton'
+import Notification from './Notification'
+import MobileNav from './MobileNav'
 
 export default function (){
     return(
         <section className='main-app'>
             <Sidebar />
-            <div className='content-wrapper'>
-                <TitleBar />
+            <main className='main-wrapper'>
+                <Notification />
+                <DocBar />
+                <MobileNav/>
                 <ItemList />
-            </div>
-            {/* <AddButton /> */}
+                <ActionBar />
+                <AddButton />
+            </main>
         </section>
     )
 }

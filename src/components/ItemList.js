@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import Item from './Item'
 import AppContext from '../store/AppContext'
+import {SortBudget} from '../actions/actions'
 import {isMobile} from '../tools/index'
 
 export default function(){
@@ -10,7 +11,7 @@ export default function(){
         <div className='itemlist'>
             <div className='itemlist__title'>
                 <span> Name </span>
-                <span> Price ({currentBudget.currency})</span>
+                <span onClick={e => dispatch(SortBudget())}> Price ({currentBudget.currency})</span>
                 {!isMobile() && <span> Percent </span>}
             </div>
             {currentBudget.items.map(item => (

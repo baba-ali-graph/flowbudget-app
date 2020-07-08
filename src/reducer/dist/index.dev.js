@@ -11,6 +11,8 @@ var _index = require("../tools/index");
 
 var _uuid = _interopRequireDefault(require("uuid"));
 
+var _testBudget = _interopRequireDefault(require("./testBudget"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -26,8 +28,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var initialState = {
-  budgets: [],
+  budgets: _testBudget["default"],
   currentBudget: {
+    _id: _uuid["default"].v4(),
     amount: 2000,
     used: 0,
     timestamp: new Date(),
@@ -49,6 +52,11 @@ var initialState = {
   },
   currencyList: ['N', 'USD', 'F', 'E'],
   showHint: true,
+  notification: {
+    type: 'success',
+    msg: 'App loaded successfully',
+    show: false
+  },
   settings: {
     allowOverflow: false,
     darkTheme: false,
@@ -86,6 +94,16 @@ var reducer = function reducer() {
           field = _action$payload.field,
           value = _action$payload.value;
       currentBudget = _objectSpread({}, currentBudget, _defineProperty({}, field, value));
+      console.log(currentBudget);
+      return _objectSpread({}, state, {
+        currentBudget: currentBudget
+      });
+
+    case types.SORT_BUDGET:
+      var _items = currentBudget.items;
+      currentBudget.items = _items.sort(function (a, b) {
+        return a.price < b.price ? 1 : -1;
+      });
       console.log(currentBudget);
       return _objectSpread({}, state, {
         currentBudget: currentBudget
@@ -137,6 +155,18 @@ var reducer = function reducer() {
 
     case types.UPDATE_ITEM:
       return _objectSpread({}, state);
+
+    case types.TOGGLE_HELP:
+      return _objectSpread({}, state, {
+        showHints: !state.showHints
+      });
+
+    case types.HIDE_NOTIFICATION:
+      var notification = state.notification;
+      notification.show = !notification.show;
+      return _objectSpread({}, state, {
+        notification: notification
+      });
   }
 };
 

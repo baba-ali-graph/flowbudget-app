@@ -14,3 +14,10 @@ export function computePartialRemaining({amount, items}, ID){
     }
     return amount - sumPrices
 }
+
+
+export function currFormat(num){
+    let formatter = new Intl.NumberFormat()
+    formatter.format(num)
+    return num
+}

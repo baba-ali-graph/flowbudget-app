@@ -1,11 +1,14 @@
 import * as types from '../actions/types'
 import {computeValues} from '../tools/index'
 import uuid from 'uuid'
+import budgets from './testBudget'
 
 export const initialState = {
-    budgets: [],
+    budgets,
     currentBudget: {
+        _id: uuid.v4(),
         amount:2000,
+        title: 'Untitled',
         used: 0,
         timestamp: new Date(),
         remaining: 2000,
@@ -18,6 +21,7 @@ export const initialState = {
         },
     currencyList: ['N', 'USD', 'F', 'E'],
     showHint: true,
+    notification: {type:'success', msg: 'App loaded successfully', show: false},
     settings: {
         allowOverflow: false,
         darkTheme: false,
@@ -45,12 +49,20 @@ export const reducer = (state = {}, action) => {
 
 
         case types.DELETE_BUDGET:
-            return {...state}
+            let budgetIndex = state.budgets.indexOf(action.payload)
+            state.budgets.splice(budgetIndex, 1)
+            return {...state, budgets}
 
 
         case types.UPDATE_BUDGET:
             let {field, value} = action.payload
             currentBudget = {...currentBudget, [field]: value}
+            console.log(currentBudget)
+            return {...state, currentBudget}
+
+        case types.SORT_BUDGET:
+            let _items = currentBudget.items
+            currentBudget.items = _items.sort((a,b) =>  a.price < b.price ?  1 : -1)
             console.log(currentBudget)
             return {...state, currentBudget}
         // item actions
@@ -87,5 +99,15 @@ export const reducer = (state = {}, action) => {
             return {...state}
         case types.UPDATE_ITEM:
             return {...state}
+
+
+        case types.TOGGLE_HELP:
+            return {...state, showHints: !state.showHints}
+        
+        
+        case types.HIDE_NOTIFICATION:
+            let {notification} = state
+            notification.show = !notification.show
+            return {...state, notification}
     }
 }

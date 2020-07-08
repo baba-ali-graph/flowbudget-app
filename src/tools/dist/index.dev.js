@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isMobile = isMobile;
 exports.formatPrice = formatPrice;
 exports.computePartialRemaining = computePartialRemaining;
+exports.currFormat = currFormat;
 
 function isMobile() {
   return window.innerWidth < 567;
@@ -44,4 +45,10 @@ function computePartialRemaining(_ref, ID) {
   }
 
   return amount - sumPrices;
+}
+
+function currFormat(num) {
+  var formatter = new Intl.NumberFormat();
+  formatter.format(num);
+  return num;
 }

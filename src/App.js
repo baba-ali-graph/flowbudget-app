@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Main from './components/Main'
 import Chart from './components/Chart'
 import './styles/index.sass'
+import './styles/sidebar.sass'
 import {reducer, initialState} from './reducer/index'
 import AppContext from './store/AppContext'
 
