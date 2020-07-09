@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import Budget from './Budget'
 import AppContext from '../store/AppContext'
-import {slideRightLeft} from '../animations/index'
+import {slideRightLeft, slideDownUp} from '../animations/index'
 import {motion, AnimatePresence} from 'framer-motion'
 
 export default function(){
@@ -23,8 +23,8 @@ export default function(){
     return(
         <nav className='mobile-nav'> 
             <div onClick={() => toggleNav(!navShow)} className="mobile-nav__trigger"> T </div>
-            {navShow && <AnimatePresence>
-                <motion.div initial='start' animate='right' exit='left' variants={slideRightLeft} className='navbar'>
+         <AnimatePresence>
+            {navShow && <motion.div initial='start' animate='right' exit='left' variants={slideRightLeft} className='navbar'>
                 <div className='navbar__top-wrapper'>
                     <div className='budget-wrapper'>
                         <h3> {currentBudget.title}</h3>
@@ -34,7 +34,17 @@ export default function(){
                             onClick={() => setExpandList(!listExpanded)}
                             > X </span>
                     </div>
-                    {listExpanded && <div className='budget-list'> {renderBudgets()} </div>} 
+                    <AnimatePresence>
+                    {listExpanded && 
+                        <motion.div 
+                            initial='start' 
+                            animate='down' 
+                            exit='up' 
+                            variants={slideDownUp}  
+                            className='budget-list'> 
+                                {renderBudgets()}
+                         </motion.div> }
+                    </AnimatePresence> 
                 </div>
                 <div className='navbar__action-wrapper'>
                     <div className='navbar__action'>
@@ -52,8 +62,8 @@ export default function(){
                         <span className='title'>  Sycnhronize </span>
                     </div>                   
                 </div>
-            </motion.div>
-            </AnimatePresence> }
+             </motion.div> }
+         </AnimatePresence> 
         </nav>
     )
 }
