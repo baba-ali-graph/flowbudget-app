@@ -5,11 +5,10 @@ import {HideNotification} from '../actions/actions'
 export default function(){
     let {store, dispatch} = useContext(AppContext)
     let {notification} = store
-    let showNotification = notification.show
 
     useEffect(() => {
         function hideNotification() {
-            if(showNotification)
+            if(notification)
                 dispatch(HideNotification())
         }
 
@@ -18,7 +17,7 @@ export default function(){
 
     return(
         <>
-        {showNotification &&
+        {notification &&
         <div className={`notification notification--${notification.type}`}>
             <span className={`notification__icon mdi mdi-${notification.type}`}/>
             <span className='notification__msg'> {notification.msg} </span>

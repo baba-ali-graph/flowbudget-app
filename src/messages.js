@@ -1,0 +1,1 @@
+export const CURRENCIES_err = 'Unable to load currency rates, are you connected ?'

@@ -8,6 +8,8 @@ import {UpdateBudget} from '../actions/actions'
 import {motion} from 'framer-motion'
 import{slideRight} from '../animations/index'
 
+
+
 export default function(){
     let {store, dispatch} = useContext(AppContext)
     let [showCurrencyList, toggleShowCurrencyList]= useState(false)

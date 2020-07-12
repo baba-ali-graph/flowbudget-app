@@ -14,3 +14,4 @@ export const AddItem = () => ({type: types.ADD_ITEM})
 
 export const ToggleHelp = () => ({types: types.TOGGLE_HELP})
 export const HideNotification = () => ({type: types.HIDE_NOTIFICATION}) 
+export const SetNotification = ({type, msg}) => ({type: types.SET_NOTIFICATION, payload: {type, msg}})

@@ -21,7 +21,7 @@ export const initialState = {
         },
     currencyList: ['N', 'USD', 'F', 'E'],
     showHint: true,
-    notification: {type:'success', msg: 'App loaded successfully', show: false},
+    notification: {type:'success', msg: 'App loaded successfully'},
     settings: {
         allowOverflow: false,
         darkTheme: false,
@@ -31,7 +31,7 @@ export const initialState = {
 }
 
 export const reducer = (state = {}, action) => {
-    let {currentBudget} = state
+    let {currentBudget, notification} = state
     switch(action.type){
         // budget actions
         case types.CREATE_BUDGET:
@@ -106,8 +106,12 @@ export const reducer = (state = {}, action) => {
         
         
         case types.HIDE_NOTIFICATION:
-            let {notification} = state
-            notification.show = !notification.show
+            notification = false
             return {...state, notification}
+
+        case types.SET_NOTIFICATION:
+            notification = {type: action.payload.type, msg: action.payload.msg }
+            return {... state, notification}
     }
+    
 }
