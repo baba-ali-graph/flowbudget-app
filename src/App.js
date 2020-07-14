@@ -6,19 +6,19 @@ import './styles/index.sass'
 import './styles/sidebar.sass'
 import useCurrency from './hooks/useCurrency'
 import {reducer, initialState} from './reducer/index'
-import {SetNotification} from './actions/actions'
+import UserPrompt from './components/UserPrompt'
 import AppContext from './store/AppContext'
 import {CURRENCIES_err} from './messages'
 
 export default function App(){
     const [store, dispatch] = useReducer(reducer, initialState)
-  
     return (
         <AppContext.Provider value={{store, dispatch}}>
         <BrowserRouter >
             <Switch>
                 <Route path="/chart" component={Chart}/>
                 <Route path="/app" component={Main}/>
+                <Route path='/app/user' component={UserPrompt} />
             </Switch>
         </BrowserRouter>
         </AppContext.Provider>

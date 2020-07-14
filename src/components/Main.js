@@ -6,6 +6,7 @@ import ItemList from './ItemList'
 import AddButton from './Buttons/AddButton'
 import Notification from './Notification'
 import MobileNav from './MobileNav'
+import BaseCurrencyModal from './BaseCurrencyModal'
 import {CURRENCIES_err} from '../messages'
 import {SetNotification} from '../actions/actions'
 import useCurrency from '../hooks/useCurrency'
@@ -24,6 +25,7 @@ export default function (){
         <section className='main-app'>
             <Sidebar />
             <main className='main-wrapper'>
+                {!store.baseCurrency && <BaseCurrencyModal />}
                 <Notification />
                 <DocBar />
                 <MobileNav/>

@@ -5,6 +5,7 @@ import budgets from './testBudget'
 
 export const initialState = {
     budgets,
+    baseCurrency: null,
     currentBudget: {
         _id: uuid.v4(),
         amount:2000,
@@ -27,7 +28,9 @@ export const initialState = {
         darkTheme: false,
         fontSize: 16,
         hideSidebar: false
-    }
+    },
+    toUpload : false
+
 }
 
 export const reducer = (state = {}, action) => {
@@ -106,12 +109,15 @@ export const reducer = (state = {}, action) => {
         
         
         case types.HIDE_NOTIFICATION:
-            notification = false
-            return {...state, notification}
+            return {...state, notification: false}
 
         case types.SET_NOTIFICATION:
             notification = {type: action.payload.type, msg: action.payload.msg }
             return {... state, notification}
+        case types.TO_UPLOAD:
+            return {...state, toUpload: true}
+        case types.SET_BASE_CURRENCY:
+            return {...state, baseCurrency: action.payload}
     }
-    
+        
 }
