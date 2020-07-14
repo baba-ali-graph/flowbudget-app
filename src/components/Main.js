@@ -11,6 +11,7 @@ import {CURRENCIES_err} from '../messages'
 import {SetNotification} from '../actions/actions'
 import useCurrency from '../hooks/useCurrency'
 import AppContext from '../store/AppContext'
+import {AnimatePresence} from 'framer-motion'
 
 export default function (){
     let {store, dispatch} = useContext(AppContext)

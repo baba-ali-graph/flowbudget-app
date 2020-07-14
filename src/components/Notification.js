@@ -1,6 +1,8 @@
 import React, {useContext, useEffect} from 'react'
 import AppContext from '../store/AppContext'
 import {HideNotification} from '../actions/actions'
+import {scaleUpDown} from '../animations/index'
+import {motion, AnimatePresence} from 'framer-motion'
 
 export default function(){
     let {store, dispatch} = useContext(AppContext)
@@ -12,18 +14,23 @@ export default function(){
                 dispatch(HideNotification())
         }
 
-        setTimeout(hideNotification, 40000)
+        setTimeout(hideNotification, 4000)
     }, [notification])
 
     return(
-        <>
+        <AnimatePresence>
         {notification &&
-        <div className={`notification notification--${notification.type}`}>
+        <motion.div
+            initial='start'
+            animate='up'
+            exit='down'
+            variants={scaleUpDown}
+            className={`notification notification--${notification.type}`}>
             <span className={`notification__icon mdi mdi-${notification.type}`}/>
             <span className='notification__msg'> {notification.msg} </span>
             <span className='notification__delete-btn'> X </span>
-        </div>
+        </motion.div>
         }
-        </>
+        </AnimatePresence>
     )
 }
